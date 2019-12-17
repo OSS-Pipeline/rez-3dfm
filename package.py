@@ -1,6 +1,6 @@
 name = "3dfm"
 
-version = "1.6.13"
+version = "1.7.15"
 
 authors = [
     "DNA Research"
@@ -12,7 +12,7 @@ description = \
     """
 
 requires = [
-    "3delight_core-{version}".format(version=str(version)),
+    "3delight-{version}".format(version=str(version)),
     "cmake-3+",
     "maya-2016+<2020"
 ]
@@ -29,5 +29,17 @@ with scope("config") as config:
 uuid = "3dfm-{version}".format(version=str(version))
 
 def commands():
-    env.MAYA_MODULE_PATH.append("{root}/maya/modules")
-    env.MAYA_RENDER_DESC_PATH.append("{root}/maya/render_desc")
+    import os
+
+    env.MAYA_MODULE_PATH.append(
+        os.path.join(
+            str(env.REZ_3DELIGHT_ROOT),
+            "maya/modules"
+        )
+    )
+    env.MAYA_RENDER_DESC_PATH.append(
+        os.path.join(
+            str(env.REZ_3DELIGHT_ROOT),
+            "maya/render_desc"
+        )
+    )
